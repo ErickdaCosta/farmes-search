@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppComponent } from './app.component';
-import { FarmerSearchCardComponent } from './farmer-search-card/farmer-search-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//Material Components
+import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
+
+
+// Material Components
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -16,9 +17,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-//Services
-import { FarmerSearchAbstractService } from './services/farmer-search-abstract/farmer-search-abstract.service';
+// Third Party Libs
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+
+// Services
 import { FarmerSearchCommonService } from './services/farmer-search-common/farmer-search-common.service';
+
+// Components
+import { FarmerSearchCardComponent } from './farmer-search-card/farmer-search-card.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,9 @@ import { FarmerSearchCommonService } from './services/farmer-search-common/farme
     MatIconModule,
     HttpClientModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [FarmerSearchCommonService],
   bootstrap: [AppComponent]
